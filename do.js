@@ -5,11 +5,11 @@ var path = require("path");
 var key = "CR25kPWD2NV8sViEjfgY7JEPuhWt_TmF";
 
 
-module.exports = function(filePath) {
+module.exports = function (filePath, callback) {
 	var input = fs.createReadStream(filePath);
 	var fileExt = path.extname(filePath);
 	var fileName = path.basename(filePath, fileExt);
-	var output = fs.createWriteStream(fileName + ".mini" + fileExt);
+	var output = fs.createWriteStream("test/" + fileName + ".mini" + fileExt);
 
 	/* Uncomment below if you have trouble validating our SSL certificate.
 	   Download cacert.pem from: http://curl.haxx.se/ca/cacert.pem */
@@ -26,6 +26,7 @@ module.exports = function(filePath) {
 			/* Compression was successful, retrieve output from Location header. */
 			https.get(response.headers.location, function(response) {
 				response.pipe(output);
+				callback();
 			});
 		} else {
 			/* Something went wrong! You can parse the JSON body for details. */
