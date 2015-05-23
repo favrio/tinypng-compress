@@ -10,8 +10,7 @@ function mapDoImages(list, limit) {
         console.log("compress file: ", url);
         doItem(url, callback);
     }, function (err, result) {
-        console.log('final: ');
-        console.log(result);
+        console.log('final: compress complete.');
     });
 }
 
