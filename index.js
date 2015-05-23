@@ -1,12 +1,9 @@
 /**
  * Created by HENG on 2015/5/22.
  */
-console.log("======");
 var fs = require("fs");
 var path = require("path");
 var mapDoImages = require("./limit.js");
-
-var testPath = "./test";
 var concurrent = 3;
 
 var walk = function(dir, done) {
@@ -36,7 +33,6 @@ var walk = function(dir, done) {
 
 var hasPath = process.argv.indexOf("--path");
 var compressPath = (hasPath !== -1 && process.argv[hasPath + 1]) ? process.argv[hasPath + 1] : null;
-console.log(compressPath);
 
 if(compressPath) {
     walk(testPath, function (err, data) {
