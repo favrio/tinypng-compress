@@ -3,26 +3,14 @@
  */
 var async = require("async");
 var doItem = require("./do.js");
-var limit = 3;
 
-//var testList = [
-//    "./test/Chrysanthemum.jpg",
-//    "./test/Desert.jpg",
-//    "./test/Hydrangeas.jpg",
-//    "./test/Jellyfish.jpg",
-//    "./test/Koala.jpg",
-//    "./test/Lighthouse.jpg",
-//    "./test/Penguins.jpg",
-//    "./test/test.png",
-//    "./test/Tulips.jpg",
-//]
-
-function mapDoImages(list) {
+function mapDoImages(list, limit) {
+    limit = limit || 3;
     async.mapLimit(list, limit, function (url, callback) {
-        console.log("doing: " + url);
+        console.log("compress file: ", url);
         doItem(url, callback);
     }, function (err, result) {
-        console.log('final:');
+        console.log('final: ');
         console.log(result);
     });
 }

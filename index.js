@@ -3,10 +3,11 @@
  */
 console.log("======");
 var fs = require("fs");
+var path = require("path");
 var mapDoImages = require("./limit.js");
 
-var path = "./test";
-
+var testPath = "./test";
+var concurrent = 3;
 
 var walk = function(dir, done) {
     var results = [];
@@ -16,7 +17,7 @@ var walk = function(dir, done) {
         (function next() {
             var file = list[i++];
             if (!file) return done(null, results);
-            file = dir + '/' + file;
+            file = path.resolve(dir, file);
             fs.stat(file, function(err, stat) {
                 if (stat && stat.isDirectory()) {
                     walk(file, function(err, res) {
@@ -32,7 +33,7 @@ var walk = function(dir, done) {
     });
 };
 
-walk(path, function (err, data) {
-    console.log(data);
-    mapDoImages(data);
+walk(testPath, function (err, data) {
+    console.log("find these images: ", data);
+    mapDoImages(data, concurrent);
 });
