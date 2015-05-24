@@ -35,7 +35,7 @@ var hasPath = process.argv.indexOf("--path");
 var compressPath = (hasPath !== -1 && process.argv[hasPath + 1]) ? process.argv[hasPath + 1] : null;
 
 if(compressPath) {
-    walk(testPath, function (err, data) {
+    walk(compressPath, function (err, data) {
         console.log("find these images: ", data);
         mapDoImages(data, concurrent);
     });
