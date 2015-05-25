@@ -1,3 +1,3 @@
 # tinypng-compress
-Ê¹ÓÃ·½·¨£º
+ä½¿ç”¨æ–¹æ³•ï¼š
 node index.js --path ./test
